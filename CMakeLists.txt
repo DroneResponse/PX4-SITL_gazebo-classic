@@ -3,6 +3,11 @@ cmake_policy(SET CMP0042 NEW)
 cmake_policy(SET CMP0048 NEW)
 cmake_policy(SET CMP0054 NEW)
 
+include_directories(mavlink/install/include)
+include_directories(mavlink/install/include/mavlink/)
+# include_directories(mavlink/install/include/mavlink/common)
+set(_MAVLINK_INCLUDE_DIR "mavlink/install/include")
+
 if (NOT CMAKE_INSTALL_PREFIX)
   set(CMAKE_INSTALL_PREFIX "/usr" CACHE STRING "install prefix" FORCE)
 endif()
