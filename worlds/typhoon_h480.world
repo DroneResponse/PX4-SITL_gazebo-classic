@@ -36,5 +36,24 @@
       <real_time_update_rate>250</real_time_update_rate>
       <magnetic_field>6.0e-6 2.3e-5 -4.2e-5</magnetic_field>
     </physics>
+
+    <!-- Wind Plugin -->
+    <plugin name="wind" filename="../build/libgazebo_wind_plugin.so">
+      <frameId>world</frameId>
+      <robotNamespace/>
+      <windVelocityMean>10.0</windVelocityMean>
+      <windVelocityMax>15.0</windVelocityMax>
+      <windVelocityVariance>0</windVelocityVariance>
+      <windDirectionMean>1 0 0</windDirectionMean>
+      <windDirectionVariance>0</windDirectionVariance>
+      <windGustStart>5</windGustStart>
+      <windGustDuration>2</windGustDuration>
+      <windGustVelocityMean>12.0</windGustVelocityMean>
+      <windGustVelocityMax>18.0</windGustVelocityMax>
+      <windGustVelocityVariance>0</windGustVelocityVariance>
+      <windGustDirectionMean>0 1 0</windGustDirectionMean>
+      <windGustDirectionVariance>0</windGustDirectionVariance>
+      <windPubTopic>wind</windPubTopic>
+    </plugin>
   </world>
 </sdf>

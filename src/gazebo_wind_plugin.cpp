@@ -35,13 +35,6 @@ GazeboWindPlugin::~GazeboWindPlugin() {
   update_connection_->~Connection();
 }
 
-ignition::math::Vector3d getDronePosition(gazebo::physics::ModelPtr model){
-  ignition::math::Pose3d pose = model->WorldPose();
-  ignition::math::Vector3d position = pose.Pos();
-
-  return position;
-}
-
 void GazeboWindPlugin::Load(physics::WorldPtr world, sdf::ElementPtr sdf) {
   world_ = world;
 
@@ -51,20 +44,19 @@ void GazeboWindPlugin::Load(physics::WorldPtr world, sdf::ElementPtr sdf) {
     gazebo::physics::ModelPtr model = world_->ModelByName("typhoon_h480");
     modelNames.push_back("typhoon_h480");
     models.push_back(model);
-    // dronePositions.push_back(getDronePosition(model));
 
     gzerr << "single drone found in the world." << std::endl;
   } else if(sdf->HasElement("typhoon_h480_0")) {
     gzerr << "multiple drones found in the world." << std::endl;
-    // Search for drone models with the prefix "typo_h480_" followed by a number
+    // Searches for drone models with the prefix "typo_h480_X" 
     int droneIndex = 0;
     while (true) {
-      std::string modelName = "typo_h480_" + std::to_string(droneIndex);
+      std::string modelName = "typhoon_h480_" + std::to_string(droneIndex);
       gazebo::physics::ModelPtr model = world_->ModelByName(modelName);
       if (model) {
         modelNames.push_back(modelName);
         models.push_back(model);
-        // dronePositions.push_back(getDronePosition(model));
+
         droneIndex++;
       } else {
         break;
@@ -74,8 +66,6 @@ void GazeboWindPlugin::Load(physics::WorldPtr world, sdf::ElementPtr sdf) {
       gzerr << "Model 'typhoon_h480' not found in the world." << std::endl;
       return;
   }
-  
-  // arr.dronePosOffsets = dronePositions;
 
   double wind_gust_start = kDefaultWindGustStart;
   double wind_gust_duration = kDefaultWindGustDuration;
