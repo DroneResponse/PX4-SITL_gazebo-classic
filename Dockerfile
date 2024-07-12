@@ -45,11 +45,13 @@ RUN git clone https://github.com/mavlink/c_library_v2.git
 
 RUN cp -r c_library_v2/development mavlink/install/include/mavlink/
 
-# COPY CMakeLists.txt .
+COPY CMakeLists.txt .
+COPY include/data_processor include
+COPY src/gazebo_wind_plugin.cpp ./src/
 # COPY src/gazebo_camera_manager_plugin.cpp ./src/
 # COPY src/gazebo_gimbal_controller_plugin.cpp ./src/
 
 
 
 # Create build directory and run CMake
-RUN mkdir build && cd build && cmake ..
+RUN mkdir build && cd build && cmake .. && make
