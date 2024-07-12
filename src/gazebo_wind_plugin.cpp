@@ -22,7 +22,7 @@
 #include "gazebo_wind_plugin.h"
 #include "common.h"
 
-#include "wind_data_processor.h"
+#include "../include/data_processor/wind_data_processor.h"
 #include <vector>
 
 namespace gazebo {
